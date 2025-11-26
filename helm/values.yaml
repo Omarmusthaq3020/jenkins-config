@@ -1,0 +1,21 @@
+controller:
+  adminUser: admin
+  adminPassword: Admin@123
+
+  image:
+    repository: jenkins/jenkins
+    tag: lts-jdk17
+
+  serviceType: LoadBalancer
+
+  JCasC:
+    enabled: true
+    defaultConfig: false
+    configScripts:
+      main-config: |
+        {{- (.Files.Get "jcasc/jenkins.yaml") | nindent 8 }}
+    
+persistence:
+  enabled: true
+  storageClass: managed-csi-premium
+  size: 20Gi

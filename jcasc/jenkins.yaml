@@ -1,0 +1,24 @@
+jenkins:
+  systemMessage: "Jenkins Managed via Helm + JCasC GitOps"
+
+  clouds:
+    - kubernetes:
+        name: "kubernetes"
+        serverUrl: "https://kubernetes.default"
+        skipTlsVerify: true
+        namespace: "jenkins"
+        jenkinsUrl: "http://jenkins.jenkins.svc.cluster.local:8080"
+        templates:
+          - name: "jenkins-aks"
+            label: "jenkins-aks"
+            image: "jenkinsacr1234.azurecr.io/jenkins-agent:latest"
+            args: ""
+            command: ""
+            workingDir: "/home/jenkins/agent"
+            ttyEnabled: true
+            privileged: false
+            runAsUser: "1000"
+            runAsGroup: "1000"
+            volumes:
+              - emptyDirVolume:
+                  mountPath: "/home/jenkins/agent"
