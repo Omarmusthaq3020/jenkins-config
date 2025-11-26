@@ -13,7 +13,7 @@ controller:
     defaultConfig: false
     configScripts:
       main-config: |
-        {{- (.Files.Get "jcasc/jenkins.yaml") | nindent 8 }}
+        {{- (.Files.Get "files/jcasc/jenkins.yaml") | nindent 8 }}
 
   sidecars:
     configAutoReload:
