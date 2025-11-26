@@ -1,6 +1,6 @@
 controller:
-  adminUser: admin
-  adminPassword: Admin@123
+  admin.username: admin
+  admin.password: Admin@123
 
   image:
     repository: jenkins/jenkins
@@ -14,6 +14,10 @@ controller:
     configScripts:
       main-config: |
         {{- (.Files.Get "jcasc/jenkins.yaml") | nindent 8 }}
+
+  sidecars:
+    configAutoReload:
+      enabled: false
     
 persistence:
   enabled: true
